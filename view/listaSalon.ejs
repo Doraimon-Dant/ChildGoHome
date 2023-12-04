@@ -1,0 +1,79 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('../../images/recursos/fondo.png');
+      /* Es para elegir el fondo */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+
+    <div class="container" id="main">
+      <br>
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <div>
+            <a href="/user/" class="btn btn-primary">Regresar</a>
+          </div>
+          <div class="btn-group">
+            <a href="/user/newSalon" class="btn btn-success btn-block">Agregar Salón</a>
+          </div>
+        </div>
+      </div><br>
+      <% errors.forEach(error=>{ %>
+        <div class="alert alert-danger">
+          <%= error%>
+        </div>
+        <%})%>
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <legend>Listado de Salones de <%=grado%>°
+                </legend>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Titulo</th>
+                      <th>Grado</th>
+                      <th>Grupo</th>
+                      <th class="text-center">Foto</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%if(salones.length>0){%>
+                      <%salones.forEach(salon=>{%>
+                        <tr>
+                          <td></td>
+                          <td>
+                            <%=salon.Titulo%>
+                          </td>
+                          <td>
+                            <%= salon.grado%>
+                          </td>
+                          <td>
+                            <%= salon.grupo%>
+                          </td>
+                          <td class="text-center">
+                            <img src="../../<%=salon.imagen%>" width="50">
+                          </td>
+                          <td class="text-center">
+                            <a href="../deleteSalon/<%=salon.id%>" class="btn btn-danger btn-sm">Eliminar</span></a>
+                            <a href="../updateSalon/<%=salon.id%>" class="btn btn-success btn-sm">Actualizar</a>
+                            <a href="/user/notify/<%=salon.grupo%>" class="btn btn-primary btn-sm">Notificar</a>
+                          </td>
+                        </tr>
+                        <%})%>
+                          <%}else{%>
+                            <tr>
+                              <td colspan="6">NO HAY REGISTROS</td>
+                            </tr>
+                            <%}%>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
+          </div>
+    </div>
+    <%- include('templates/footer')%>

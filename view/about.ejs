@@ -1,0 +1,46 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:null})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('images/recursos/fondo3.jpeg');
+      /* Es para elegir el fondo */
+    }
+
+    .custom-main {
+      text-align: center;
+      /* Centra el contenido */
+      margin-top: 20px;
+      /* Agrega un margen superior de 20 píxeles */
+    }
+
+    .custom-main h1 {
+      font-weight: bold;
+      /* Hace que la palabra "PEKITA" esté en negrita */
+      font-size: 4em;
+      /* Aumenta el tamaño de la letra */
+    }
+
+    /*Es para que el boton sea como es */
+    .btn-custom {
+      background-color: black;
+      color: white;
+    }
+
+    .custom-main .lead {
+      font-size: 2em;
+      /* Ajusta el tamaño de la fuente para la frase de bienvenida */
+      margin: 0 350px;
+      /* Agregar margen a los lados (izquierda y derecha) */
+    }
+  </style>
+  <main class="mx-auto custom-main">
+    <h1 class="mb-4">CHILD GO HOME</h1> <!-- Modificado el valor de margin-bottom -->
+    <p class="lead">🛎️ ¡Descubre nuestro Software Notificador de Finalización de Clases! Mantén a los padres en la
+      jugada
+      con alertas instantáneas al finalizar las lecciones de sus hijos. 🏫📲 ¡Comunicación escolar fácil y segura!
+      🎓👨‍👩‍👧‍👦 </p>
+    <p class="lead"><br>
+      <a href="/login" class="btn btn-lg btn-custom fw-bold">INICIAR</a>
+    </p>
+  </main>
+  <%- include('templates/footer')%>

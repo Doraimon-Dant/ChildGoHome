@@ -1,0 +1,150 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /*Modifica el cuerpo*/
+    body {
+      background-image: url('/images/recursos/fondo.png');
+      /*Es para elegir el fondo*/
+    }
+
+    /*Es para el texto del formulario*/
+    .form-group {
+      text-align: left;
+      /* Alinea el texto a la izquierda */
+      font-weight: bold;
+      /* Hace que el texto sea negrito */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <% errors.forEach(error=>{ %>
+      <div class="alert alert-danger">
+        <%= error%>
+      </div>
+      <%})%>
+        <%if(method !=="Update" ){%>
+          <div class="container" id="main">
+            <div class="row">
+              <div class="col-md-12">
+                <fieldset>
+                  <legend>Datos del Grupo</legend>
+                  <form method="POST" action="./newSalon" enctype="multipart/form-data" id="form">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Titulo</label>
+                          <input type="text" class="form-control" name="Titulo" id="Title" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Descripcion</label>
+                          <textarea class="form-control" name="Descripcion" id="Description" cols="3"
+                            required></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>Grado</label>
+                          <select class="form-control" name="grado" id="grado" required>
+                            <option value="">--SELECCIONE--</option>
+                            <option value="1">PRIMERO</option>
+                            <option value="2">SEGUNDO</option>
+                            <option value="3">TERCERO</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Foto</label>
+                          <input type="file" class="form-control" name="imagen" accept="image/png, image/jpeg" id="img"
+                            required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>Grupo</label>
+                          <input type="text" maxlength="2" placeholder="1B, 2D, 3F,etc.." class="form-control"
+                            name="grupo" id="gp" required>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="submit" name="accion" class="btn btn-success" value="Registrar"></button>
+                    <a href="/user/" class=" btn btn-danger">Cancelar</a>
+                  </form>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <%}else{%>
+            <div class="container" id="main">
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset>
+                    <legend>Actualizar del Grupo</legend>
+                    <form method="POST" action="../updateSalon/<%=salon.id%>" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Titulo</label>
+                            <input type="text" class="form-control" value="<%= salon.Titulo%>" name="Titulo" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Descripcion</label>
+                            <textarea class="form-control" name="Descripcion" cols="3"
+                              required><%= salon.Descripcion%></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Grado</label>
+                            <select class="form-control" name="grado" required>
+                              <option value="">--SELECCIONE--</option>
+                              <option value="1" <%if(salon.grado==="1" ){%>selected<%}%> >PRIMERO</option>
+                              <option value="2" <%if(salon.grado==="2" ){%>selected<%}%> >SEGUNDO</option>
+                              <option value="3" <%if(salon.grado==="3" ){%>selected<%}%> >TERCERO</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" class="form-control" name="imagen" accept="image/png, image/jpeg"
+                              required>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Grupo</label>
+                            <input type="text" class="form-control" name="grupo" value="<%=salon.grupo%>" required>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="submit" name="accion" class="btn btn-success" value="Actualizar"></button>
+                      <a href="/user/" class=" btn btn-danger">Cancelar</a>
+                    </form>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+
+            <%}%>
+              <%- include('templates/footer' )%>

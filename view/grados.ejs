@@ -1,0 +1,64 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('../images/recursos/fondo.png');
+      /* Es para elegir el fondo */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <% errors.forEach(error=>{ %>
+      <div class="alert alert-danger">
+        <%= error%>
+      </div>
+      <%})%>
+        <div class="container">
+          <h1 class="mb-4"></h1>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="../images/fliyers/36.png" class="d-block w-100">
+                <div class="card-body text-center">
+                  <h5 class="card-title">TERCERO</h5>
+                  <p class="card-text">SECUNDARIA</p>
+                  <div class="d-flex justify-content-center">
+                    <div>
+                      <a href="./salones/1" class="btn btn-warning">Ver Salones</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Segundo contenedor -->
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="../images/fliyers/37.png" class="d-block w-100">
+                <div class="card-body text-center">
+                  <h5 class="card-title">TERCERO</h5>
+                  <p class="card-text">SECUNDARIA</p>
+                  <div class="d-flex justify-content-center">
+                    <div>
+                      <a href="./salones/2" class="btn btn-warning">Ver Salones</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Tercer contenedor -->
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="../images/fliyers/38.png" class="d-block w-100">
+                <div class="card-body text-center">
+                  <h5 class="card-title">TERCERO</h5>
+                  <p class="card-text">SECUNDARIA</p>
+                  <div class="d-flex justify-content-center">
+                    <div>
+                      <a href="./salones/3" class="btn btn-warning">Ver Salones</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('templates/footer')%>

@@ -1,0 +1,123 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /*Modifica el cuerpo*/
+    body {
+      background-image: url('/images/recursos/fondo.png');
+      /*Es para elegir el fondo*/
+    }
+
+    /*Es para el texto del formulario*/
+    .form-group {
+      text-align: left;
+      /* Alinea el texto a la izquierda */
+      font-weight: bold;
+      /* Hace que el texto sea negrito */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <% errors.forEach(error=>{ %>
+      <div class="alert alert-danger">
+        <%= error%>
+      </div>
+
+      <%})%>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="pull-right"><br>
+                <a href="/user/maestros" class=" btn btn-primary">Regresar</a>
+              </div>
+            </div>
+          </div><br>
+
+          <fieldset>
+
+
+            <%if(method!=="Update"){%>
+              <legend style="text-align: center;">Registra un nuevo usuario</legend>
+              <form action="./newUser" method="POST">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control" name="Nombre" required>
+                </div>
+                <div class="form-group">
+                  <label>Usuario</label>
+                  <input type="text" class="form-control" name="userName" required>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Contraseña</label>
+                      <input type="password" class="form-control" name="psw" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Confirmar Contraseña</label>
+                      <input type="password" class="form-control" name="repsw" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Rol</label>
+                      <select class="form-control" name="rol" required>
+                        <option value="">--SELECCIONE--</option>
+                        <%roles.forEach(rol=>{%>
+                          <option value="<%= rol.Rol%>">
+                            <%= rol.Rol%>
+                          </option>
+                          <%})%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <button class="btn btn-primary btn-block">Registrar</button>
+              </form>
+              <%}else{%>
+                <legend style="text-align: center;">Actualizacion de usuario</legend>
+                <form action="../updateMaestro" method="POST">
+                  <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" value="<%=maestro.Nombre%>" class="form-control" name="Nombre">
+                  </div>
+                  <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" class="form-control" value="<%=maestro.userName%>" name="userName" readonly>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Nueva Contraseña</label>
+                        <input type="password" class="form-control" value="" name="psw">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" class="form-control" value="" name="repsw">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Rol</label>
+                        <select class="form-control" name="rol">
+                          <option value="">--SELECCIONE--</option>
+                          <%roles.forEach(rol=>{%>
+                            <option value="<%= rol.Rol%>" <%if(rol.Rol===maestro['RolId'].Rol){%>selected<%}%> >
+                                <%= rol.Rol%>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                </form>
+
+                <%}%>
+
+          </fieldset>
+        </div>
+        <%- include('templates/footer' )%>

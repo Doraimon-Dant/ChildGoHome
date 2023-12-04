@@ -1,0 +1,57 @@
+<header>
+  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+        <strong>Child go Home</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarHeader">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <%if(maestro===1){%>
+            <li class="nav-item">
+              <a href="/user/" class="nav-link <%if(value==='grados'){%>active<%}%>">Salones</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/tutores" class="nav-link <%if(value==='tutores'){%>active<%}%>">Tutores</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/maestros" class="nav-link <%if(value==='maestros'){%>active<%}%>">Maestros</a>
+            </li>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Salir</a>
+            </li>
+            <%}else if(maestro===0){%>
+              <li class="nav-item">
+                <a href="/user/grados" class="nav-link active">Salones</a>
+              </li>
+              <li class="nav-item">
+                <a href="/logout" class="nav-link">Salir</a>
+              </li>
+              <%}else if(maestro===2){%>
+                <li class="nav-item">
+                  <a href="/user/" class="nav-link <%if(value==='error'){%>active<%}%>">Error</a>
+                </li>
+                <%}else if(maestro===3){%>
+                  <li class="nav-item">
+                    <a href="/" class="nav-link">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/login" class="nav-link active">Login</a>
+                  </li>
+                  <%}else{%>
+                    <li class="nav-item">
+                      <a href="/" class="nav-link active">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/login" class="nav-link">Login</a>
+                    </li>
+                    <%}%>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

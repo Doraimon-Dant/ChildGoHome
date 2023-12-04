@@ -1,0 +1,191 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('../../images/recursos/fondo.png');
+      /* Es para elegir el fondo */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="pull-right"><br>
+            <a href="/user/tutores" class=" btn btn-primary">Regresar</a>
+          </div>
+        </div>
+      </div><br>
+      <% errors.forEach(error=>{ %>
+        <div class="alert alert-danger">
+          <%= error%>
+        </div>
+
+        <%})%>
+          <%if(method !=="Update" ){%>
+            <fieldset>
+              <legend style="text-align: center;">Completa los datos</legend>
+              <form action="/user/newTutor" method="POST">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" class="form-control" name="Nombre" ,value:valuerequired>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Apellidos</label>
+                      <input type="text" class="form-control" name="Apellidos" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Grado</label>
+                      <select class="form-control" name="grupo" id="grupo" required>
+                        <option value="">--SELECCIONE--</option>
+                        <%grupos.forEach(grupo=>{%>
+                          <option value="<%=grupo%>">
+                            <%=grupo%>
+                          </option>
+                          <%})%>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Teléfono</label>
+                      <input type="text" maxlength="11" class="form-control" name="Telefono" required autocomplete="off"
+                        onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Calle</label>
+                      <input type="text" class="form-control" name="Calle" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Colonia</label>
+                      <input type="text" class="form-control" name="Colonia" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Num. Ext.</label>
+                      <input type="text" class="form-control" name="Numero" required
+                        onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Ciudad</label>
+                      <input type="text" class="form-control" name="Ciudad" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Cod. Postal</label>
+                      <input type="text" class="form-control" name="Codpostal" required
+                        onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-block">Registrar</button>
+              </form>
+            </fieldset>
+            <%}else{%>
+              <fieldset>
+                <legend style="text-align: center;">Completa los datos</legend>
+                <form action="/user/updateTutor/<%=tutor.id%>" method="POST">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" value="<%=nombre[0]%> <%=nombre[1]%>" class="form-control" name="Nombre"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" value="<%=nombre[2]%> <%=nombre[3]%>" class="form-control" name="Apellidos"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Grado</label>
+                        <select class="form-control" name="grupo" id="grupo" required>
+                          <option value="">--SELECCIONE--</option>
+                          <%grupos.forEach(grupo=>{%>
+                            <option value="<%=grupo%>" <%if(tutor['salonId'].grupo===grupo){%>selected<%}%> >
+                                <%=grupo%>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="text" maxlength="11" value="<%=tutor['TelefonoId'].Telefono%>" class="form-control"
+                          name="Telefono" required autocomplete="off"
+                          onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                        <input type="text" name="prevTelefono" value="<%=tutor['TelefonoId'].Telefono%>" hidden>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Calle</label>
+                        <input type="text" value="<%=domicilio.calle%>" class="form-control" name="Calle" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Colonia</label>
+                        <input type="text" value="<%=domicilio.colonia%>" class="form-control" name="Colonia" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Num. Ext.</label>
+                        <input type="text" value="<%=domicilio.numero%>" class="form-control" name="Numero" required
+                          onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Ciudad</label>
+                        <input type="text" value="<%=domicilio.ciudad%>" class="form-control" name="Ciudad" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Cod. Postal</label>
+                        <input type="text" value="<%=domicilio.codigoPostal%>" class="form-control" name="CodPostal"
+                          required onkeypress="return (event.charCode >=48 && event.charCode <= 57)" min="1">
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-success btn-block">Actualizar</button>
+                </form>
+              </fieldset>
+              <%}%>
+
+                <%- include('templates/footer' )%>

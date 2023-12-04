@@ -1,0 +1,72 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('../images/recursos/fondo.png');
+      /* Es para elegir el fondo */
+    }
+  </style>
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <br>
+    <div class="container" id="main">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <div class="btn-group">
+            <a href="/user/newUser" class="btn btn-success btn-block">Agregar </a>
+          </div>
+        </div>
+      </div><br>
+      <% errors.forEach(error=>{ %>
+        <div class="alert alert-danger">
+          <%= error%>
+        </div>
+
+        <%})%>
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <legend>Listado de Maestros</legend>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Usuario</th>
+                      <th>Rol</th>
+                      <th class="text-center"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if(maestros.length===0){%>
+                      <tr>
+                        <td colspan="6">NO HAY REGISTROS</td>
+                      </tr>
+                      <%} %>
+                        <%maestros.forEach(maestro=>{%>
+                          <tr>
+                            <td>
+                              <%= maestro.Nombre%>
+                            </td>
+                            <td>
+                              <%= maestro.userName%>
+                            </td>
+                            <td>
+                              <%= maestro['RolId'].Rol%>
+                            </td>
+                            <td class="text-center">
+                              <a href="/user/deleteteMaestro?id=<%=maestro.id%>"
+                                class="btn btn-danger btn-sm">Eliminar</span></a>
+                              <a href="/user/updateMaestro/<%=maestro.id%>"
+                                class="btn btn-success btn-sm">Actualizar</a>
+                            </td>
+                          </tr>
+                          <%})%>
+
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
+          </div>
+    </div>
+    </div>
+
+    <%- include('templates/footer')%>

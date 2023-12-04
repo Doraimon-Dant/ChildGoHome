@@ -1,0 +1,69 @@
+<%- include('templates/header',{tituloweb:titulo,maestro:status,value:value})%>
+  <style>
+    /* Modifica el cuerpo */
+    body {
+      background-image: url('../../images/recursos/fondo.png');
+      /* Es para elegir el fondo */
+    }
+  </style>
+
+  <%- include('templates/carrusel',{ruta:"../../images/fliyers/"})%>
+    <br>
+    <div class="container" id="main">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <div class="btn-group">
+            <a href="/user/newTutor" class="btn btn-success btn-block">Agregar Tutor</a>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-12">
+          <fieldset>
+            <legend>Listado de Tutores</legend>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Grupo</th>
+                  <th>Telefono</th>
+                  <th>Domicilio</th>
+                  <th class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%if(tutores.length>0){%>
+                  <%for(let idx=0;idx<tutores.length;idx++){%>
+                    <tr>
+                      <td>
+                        <%= tutores[idx].Nombre%>
+                      </td>
+                      <td>
+                        <%= tutores[idx]['salonId'].grupo%>
+                      </td>
+                      <td>
+                        <%= tutores[idx]['TelefonoId'].Telefono%>
+                      </td>
+                      <td>
+                        <%= domicilios[idx].calle%>
+                          #<%= domicilios[idx].numero%>,
+                            <%= domicilios[idx].colonia%>
+                      </td>
+                      <td class="text-center">
+                        <a href="#" class="btn btn-danger btn-sm">Eliminar</span></a>
+                        <a href="/user/updateTutor/<%=tutores[idx].id%>" class="btn btn-success btn-sm">Actualizar</a>
+                    </tr>
+                    <%}%>
+                      <%}else{%>
+                        <tr>
+                          <td colspan="6">NO HAY REGISTROS</td>
+                        </tr>
+                        <%}%>
+              </tbody>
+            </table>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    </div>
+    <%- include('templates/footer')%>
