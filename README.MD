@@ -7,11 +7,11 @@ The safety of children is so important that this project aims to help with commu
 <table>
 <tr>
 <a target='_blank' href='https://github.com/PaulinaSanchez00'>
-<h3 align ="center">PulinaSanchez</h3>
+<h3 align ="center">PulinaSanchez Front-End</h3>
 </a>
 </tr>
 <tr>
-<a target='_blank' href='https://github.com/Doraimon-Dant'><h3 align='center'></h3></a>
+<a target='_blank' href='https://github.com/Doraimon-Dant'><h3 align='center'>Me Back-End</h3></a>
 </tr>
 </table>
 
