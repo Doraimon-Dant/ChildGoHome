@@ -11,7 +11,7 @@ The safety of children is so important that this project aims to help with commu
 </a>
 </tr>
 <tr>
-<a target='_blank' href='https://github.com/Doraimon-Dant'><h3 align='center'><h3></a>
+<a target='_blank' href='https://github.com/Doraimon-Dant'><h3 align='center'></h3></a>
 </tr>
 </table>
 
